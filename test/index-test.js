@@ -22,7 +22,7 @@ beforeEach(function() {
 	  {name: '23rd&Bwy', distance: null, predecessor: null},
 	  {name: '14th&Lex', distance: null, predecessor: null},
 	  {name: '23rd&Lex', distance: null, predecessor: null}
-	]
+  ]
 })
 
 describe('#findAdjacent', function() {
