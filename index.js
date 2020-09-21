@@ -17,3 +17,8 @@ function findAdjacent(rootNode, vertices, edges) {
     console.log(adjacents)
     return adjacents.filter(adj => adj.distance===null)
 }
+
+function markDistanceAndPredecessor(rootNode, vertices, edges) {
+    const newDistance = rootNode.distance+1
+    return findAdjacent(rootNode, vertices, edges).map(vertex => ({...vertex, distance:newDistance, predecessor:rootNode}))
+}
