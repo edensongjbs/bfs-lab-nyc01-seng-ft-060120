@@ -8,16 +8,18 @@ function bfs(rootNode, vertices, edges){
     while(!(queue.length === 0)) {
         firstNode = queue.shift()
         final.push(firstNode)
-        console.log(firstNode)
+        // console.log(firstNode)
         if (firstNode.distance === null){firstNode.distance=0}
         // console.log(queue, firstNode, vertices, edges)
         adjacentVertices = findAdjacent(firstNode.name, vertices, edges)
-        // debugger
+
         adjacentVertices = markDistanceAndPredecessor(firstNode, adjacentVertices)
-        for (const vertex in adjacentVertices) {
+
+        for (const vertex of adjacentVertices) {
             queue.push(vertex)
-            final.push(vertex)
+            // final.push(vertex)
         }
+        console.log(final, queue, adjacentVertices)
     }
     return final
 }
@@ -27,11 +29,12 @@ function otherVertex(node, edge) {
 } 
 
 function findAdjacent(rootNode, vertices, edges) {
-    let vertexName, adjacents = []
+    let vertexName, theVertex, adjacents = []
     edges.forEach(edge => {
         if (edge.includes(rootNode)) {
             vertexName = otherVertex(rootNode, edge)
-            adjacents.push(vertices.find(vert => vert.name===vertexName))
+            theVertex = (vertices.find(vert => vert.name===vertexName))
+            if (!theVertex.distance){adjacents.push(theVertex)}
         }
     })
     // debugger
@@ -40,7 +43,6 @@ function findAdjacent(rootNode, vertices, edges) {
 
 function markDistanceAndPredecessor(rootNode, adjNodes) {
     const newDistance = rootNode.distance+1
-    debugger
     return adjNodes.map(vertex => ({name: vertex.name, distance:newDistance, predecessor:rootNode}))
 }
 
