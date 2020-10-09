@@ -5,7 +5,7 @@ function bfs(rootNode, vertices, edges){
     queue.push(rootNode)
     let final = []
         // queue = [rootNode]
-    while(!(queue.length === 0)) {
+    while(queue.length !== 0) {
         firstNode = queue.shift()
         final.push(firstNode)
         // console.log(firstNode)
@@ -34,7 +34,7 @@ function findAdjacent(rootNode, vertices, edges) {
         if (edge.includes(rootNode)) {
             vertexName = otherVertex(rootNode, edge)
             theVertex = (vertices.find(vert => vert.name===vertexName))
-            if (!theVertex.distance){adjacents.push(theVertex)}
+            if (theVertex.distance===null){adjacents.push(theVertex)}
         }
     })
     // debugger
